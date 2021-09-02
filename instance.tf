@@ -22,7 +22,7 @@ data "terraform_remote_state" "global" {
 
 resource "null_resource" "genapptraffic" {
   provisioner "local-exec" {
-    	command = "/bin/bash gentraffic.sh ${local.appvmip} ${local.appport}"
+    	command = "/bin/bash ./scripts/gentraffic.sh ${local.appvmip} ${local.appport}"
   }
 }
 
