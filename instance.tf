@@ -28,7 +28,8 @@ resource "null_resource" "genapptraffic" {
 
 
 locals {
-  appvmip = data.terraform_remote_state.appvm.outputs.vm_deploy[0]
+  #appvmip = data.terraform_remote_state.appvm.outputs.vm_deploy[0]
   appport = data.terraform_remote_state.global.outputs.appport
+  appvmip = data.terraform_remote_state.appvm.outputs.vm_ip[0]
 }
 
