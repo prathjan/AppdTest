@@ -1,5 +1,7 @@
-// The zero agent version
 variable "appvmwsname" {
+  type = string
+}
+variable "globalwsname" {
   type = string
 }
 
