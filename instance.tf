@@ -80,7 +80,7 @@ resource "vsphere_folder" "vm_folder" {
 
 
 resource "vsphere_virtual_machine" "vm_deploy" {
-  name             = "${var.vm_prefix}-${random_string.folder_name_prefix.id}-dbvm"
+  name             = "${var.vm_prefix}-${random_string.folder_name_prefix.id}-testvm"
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
   folder           = vsphere_folder.vm_folder.path
@@ -109,7 +109,7 @@ resource "vsphere_virtual_machine" "vm_deploy" {
     template_uuid = data.vsphere_virtual_machine.template.id
     customize {
       linux_options {
-        host_name = "${var.vm_prefix}-${random_string.folder_name_prefix.id}-dbvm"
+        host_name = "${var.vm_prefix}-${random_string.folder_name_prefix.id}-testvm"
         domain    = var.vm_domain
       }
       network_interface {}
