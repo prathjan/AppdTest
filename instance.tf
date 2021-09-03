@@ -121,7 +121,7 @@ resource "vsphere_virtual_machine" "vm_deploy" {
 
 resource "null_resource" "vm_node_init" {
   triggers = {
-	trig = ${var.trigcount}
+	trig = var.trigcount
   }
   provisioner "file" {
     source = "scripts/"
