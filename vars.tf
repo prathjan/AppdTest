@@ -2,6 +2,9 @@ variable "globalwsname" {
   type = string
 }
 
+variable "appvmwsname" {
+  type = string
+}
 // The vsphere ip address
 variable "vsphere_server" {
   type = string
