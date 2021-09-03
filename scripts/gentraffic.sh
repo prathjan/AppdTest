@@ -1,6 +1,7 @@
 #!/bin/sh
 apt install openjdk-8-jdk -y
-tar xvf ./scripts/apache-jmeter-5.4.1.tgz 
+cd /tmp
+tar xvf ./tmp/apache-jmeter-5.4.1.tgz 
 cd apache-jmeter-5.4.1/bin
 java -jar ApacheJMeter.jar -t teastore_browse_nogui.jmx -Jhostname '$1' -Jport '$2' -JnumUser 10 -JrampUp 1 -l mylogfile.log -n
 
