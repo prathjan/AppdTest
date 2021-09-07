@@ -120,8 +120,39 @@ resource "vsphere_virtual_machine" "vm_deploy" {
 
 
 resource "null_resource" "vm_node_init" {
+  provisioner "file" {
+    source = "scripts/"
+    destination = "/tmp/"
+    connection {
+      type = "ssh"
+      host = "${vsphere_virtual_machine.vm_deploy.default_ip_address}"
+      user = "root"
+      password = "${var.root_password}"
+      port = "22"
+      agent = false
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+        "chmod +x /tmp/initjmeter.sh",
+        "/tmp/initjmeter.sh" 
+    ]
+    connection {
+      type = "ssh"
+      host = "${vsphere_virtual_machine.vm_deploy.default_ip_address}"
+      user = "root"
+      password = "${var.root_password}"
+      port = "22"
+      agent = false
+    }
+  }
+
+}
+
+resource "null_resource" "vm_starttraffic" {
   triggers = {
-	trig = var.trigcount
+        trig = var.trigcount
   }
   provisioner "file" {
     source = "scripts/"
