@@ -151,6 +151,9 @@ resource "null_resource" "vm_node_init" {
 }
 
 resource "null_resource" "vm_starttraffic" {
+  depends_on = [
+    null_resource.vm_node_init,
+  ]
   triggers = {
         trig = var.trigcount
   }
